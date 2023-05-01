@@ -5,6 +5,7 @@ import './App.css';
 import Header from './components/Header/Header.js';
 import Form from './components/Form/Form.js';
 import MiOrg from './components/MiOrg';
+import Team from './components/Team';
 
 function App() {
   const [showForm,updateState] = useState(false);
@@ -12,16 +13,56 @@ function App() {
   const changeShow = () => {
     updateState(!showForm);
   }
+  // Lista de equipos: contiene el nombre, los colores de cada equipo en un objeto
+  const teams =[
+    {
+      title:'Programación',
+      primaryColor:'#57C278',
+      secondaryColor:'#D9F7E9',
+    },
+    {
+      title:'Front End',
+      primaryColor:'#82CFFA',
+      secondaryColor:'#E8F8FF',
+    },
+    {
+      title:'Data Science',
+      primaryColor:'#A6D157',
+      secondaryColor:'#F0F8E2',
+    },
+    {
+      title:'DeVops',
+      primaryColor:'#E06B69',
+      secondaryColor:'#FDE7E8',
+    },
+    {
+      title:'UX y Diseño',
+      primaryColor:'#DB6EBF',
+      secondaryColor:'#FAE9F5',
+    },
+    {
+      title:'Móvil',
+      primaryColor:'#FFBA05',
+      secondaryColor:'#FFF5D9',
+    },
+    {
+      title:'Innovasión y Gestión',
+      primaryColor:'#FF8A29',
+      secondaryColor:'#FFEEDF',
+    }
+];
 
   //Ternario --> codición ? caminoVerdadero : caminoFalso 
   return (
     <div>
       {/* Llamamos nuestro componente */}
       <Header />
-      {showForm && <Form />}
+      {showForm && <Form teams={teams.map((team)=> team.title)}/>}
       <MiOrg updateShow={changeShow}/>
+      {
+        teams.map((team) => <Team team={team} key={team.title}/>)
+      }
     </div>
   );
 }
-
 export default App;

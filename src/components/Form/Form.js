@@ -4,7 +4,7 @@ import './Form.css';
 import TextField from '../TextField';
 import OptionList from '../OptionList';
 import Botton from '../Botton';
-const Form = ()=>{
+const Form = (props)=>{
     // Creamos una función que nos permita prevenir el comportamiento predeterminado del formulario
     const manageShipping = (e)=>{
         e.preventDefault();
@@ -52,6 +52,7 @@ const Form = ()=>{
                     required
                     val={team} 
                     updateValue={setTeam}
+                    teams = {props.teams}
                 />
                 
                 <Botton text='Crear'/>
