@@ -4,7 +4,15 @@ import './Form.css';
 import TextField from '../TextField';
 import OptionList from '../OptionList';
 import Botton from '../Botton';
+
+
 const Form = (props)=>{
+    
+    const [name,setName] = useState("");
+    const [rol,setRol] = useState("");
+    const [photo,setPhoto] = useState("");
+    const [team,setTeam] = useState("");
+    const { registerCollaborator } = props
     // Creamos una función que nos permita prevenir el comportamiento predeterminado del formulario
     const manageShipping = (e)=>{
         e.preventDefault();
@@ -13,15 +21,10 @@ const Form = (props)=>{
                             rol,
                             photo,
                             team
-
                         }
-        console.log(dateSend);
+        registerCollaborator(dateSend);
     };
 
-    const [name,setName] = useState("");
-    const [rol,setRol] = useState("");
-    const [photo,setPhoto] = useState("");
-    const [team,setTeam] = useState("");
     return (
         <section className='form'>
             {/* Evento onsubmit de HTML en react es onSubmit */}
@@ -54,7 +57,6 @@ const Form = (props)=>{
                     updateValue={setTeam}
                     teams = {props.teams}
                 />
-                
                 <Botton text='Crear'/>
             </form>
         </section>

@@ -14,3 +14,10 @@
     padding-bottom: 8px;
 }
 
+.collaborators{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+}
+

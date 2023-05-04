@@ -12,7 +12,7 @@ const OptionList = (props) =>{
         <div className='form-group'>
             <label>Equipos</label>
             <select value={props.value} onChange={manageChange}>
-                <option value="" disabled defaultValue="" hidden >Selecccionar Equipo</option>
+                <option value="" defaultValue="">Selecccionar Equipo</option>
                 {props.teams.map((team, index) => <option key={index} value={team}>{team}</option>)}
             </select>
         </div>
