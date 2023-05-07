@@ -1,9 +1,10 @@
 // Vicnulamos nuestro css
 import {useState} from 'react';
 import './Form.css';
-import TextField from '../TextField';
+import Field from '../Field';
 import OptionList from '../OptionList';
 import Botton from '../Botton';
+import { v4 as uuid } from 'uuid';
 
 
 const Form = (props)=>{
@@ -12,8 +13,13 @@ const Form = (props)=>{
     const [rol,setRol] = useState("");
     const [photo,setPhoto] = useState("");
     const [team,setTeam] = useState("");
-    const { registerCollaborator } = props
+
+    const [title, setTitle] = useState("");
+    const [color, setColor] = useState("");
+
+    const { registerCollaborator, createTeam } = props
     // Creamos una función que nos permita prevenir el comportamiento predeterminado del formulario
+    
     const manageShipping = (e)=>{
         e.preventDefault();
         let dateSend = {
@@ -25,26 +31,31 @@ const Form = (props)=>{
         registerCollaborator(dateSend);
     };
 
+    const manageNewShipping = (e) =>{
+        e.preventDefault();
+        createTeam({title,primaryColor:color});
+    }
+
     return (
         <section className='form'>
             {/* Evento onsubmit de HTML en react es onSubmit */}
             <form onSubmit={manageShipping}>
                 <h2> Rellena el formulario para crear el colaborador.</h2>
-                <TextField 
+                <Field 
                     title='Nombre' 
                     placeholder='Ingresar nombre' 
                     required 
                     val={name} 
                     updateValue={setName}
                 />
-                <TextField 
+                <Field 
                     title='Puesto' 
                     placeholder='Ingresar puesto' 
                     required
                     val={rol} 
                     updateValue={setRol}
                 />
-                <TextField 
+                <Field 
                     title='Foto' 
                     placeholder='Ingresa dirección de la foto' 
                     required
@@ -58,6 +69,25 @@ const Form = (props)=>{
                     teams = {props.teams}
                 />
                 <Botton text='Crear'/>
+            </form>
+
+            <form onSubmit={manageNewShipping}>
+                <h2> Rellena el formulario para crear el equipo.</h2>
+                <Field 
+                    title='Titulo' 
+                    placeholder='Ingresar titulo' 
+                    required 
+                    val={title} 
+                    updateValue={setTitle}
+                />
+                <Field
+                    type='color'
+                    title='Color'  
+                    required
+                    val={color} 
+                    updateValue={setColor}
+                />
+                <Botton text='Registrar Equipo'/>
             </form>
         </section>
     );

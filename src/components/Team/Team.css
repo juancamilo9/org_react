@@ -4,6 +4,15 @@
     box-sizing: border-box;
     text-align: center;
     font-size: 32px;
+    position: relative;
+}
+
+.color{
+    position: absolute;
+    right: 50px;
+    top: 20px;
+    border: none;
+    height: 3em;
 }
 
 .team h3{
